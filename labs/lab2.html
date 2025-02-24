@@ -16,28 +16,25 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -50,7 +47,6 @@
     <link rel="prev" title="Lab 1: Hello World" href="lab1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -66,8 +62,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -75,6 +82,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -82,8 +90,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -99,8 +107,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -130,11 +137,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Class:</span></p>
@@ -171,14 +182,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -275,16 +281,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -315,16 +329,17 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercises">Basic Exercises</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-1-uart-bootloader-30">Basic Exercise 1 - UART Bootloader - 30%</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-1-reboot-10">Basic Exercise 1 - Reboot - 10%</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-2-uart-bootloader-30">Basic Exercise 2 - UART Bootloader - 30%</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#config-kernel-loading-setting">Config Kernel Loading Setting</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-2-initial-ramdisk-30">Basic Exercise 2 - Initial Ramdisk - 30%</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-3-initial-ramdisk-30">Basic Exercise 3 - Initial Ramdisk - 30%</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#new-ascii-format-cpio-archive">New ASCII Format Cpio Archive</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-cpio-archive">Loading Cpio Archive</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-3-simple-allocator-10">Basic Exercise 3 - Simple Allocator - 10%</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-4-simple-allocator-10">Basic Exercise 4 - Simple Allocator - 10%</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-exercises">Advanced Exercises</a><ul class="nav section-nav flex-column">
@@ -385,26 +400,67 @@ The initialization of the remaining subsystems will be introduced at later labs.
 </section>
 <section id="basic-exercises">
 <h2>Basic Exercises<a class="headerlink" href="#basic-exercises" title="Link to this heading">#</a></h2>
-<section id="basic-exercise-1-uart-bootloader-30">
-<h3>Basic Exercise 1 - UART Bootloader - 30%<a class="headerlink" href="#basic-exercise-1-uart-bootloader-30" title="Link to this heading">#</a></h3>
+<section id="basic-exercise-1-reboot-10">
+<h3>Basic Exercise 1 - Reboot - 10%<a class="headerlink" href="#basic-exercise-1-reboot-10" title="Link to this heading">#</a></h3>
+<p>Rpi3 doesn’t originally provide an on board reset button.</p>
+<p>You can follow this example code to reset your rpi3.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This snippet of code only works on real rpi3, not on QEMU.</p>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PM_PASSWORD 0x5a000000</span>
+<span class="cp">#define PM_RSTC 0x3F10001c</span>
+<span class="cp">#define PM_WDOG 0x3F100024</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">volatile</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">addr</span><span class="p">;</span>
+<span class="w">    </span><span class="o">*</span><span class="n">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">tick</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                 </span><span class="c1">// reboot after watchdog timer expire</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">PM_RSTC</span><span class="p">,</span><span class="w"> </span><span class="n">PM_PASSWORD</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x20</span><span class="p">);</span><span class="w">  </span><span class="c1">// full reset</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">PM_WDOG</span><span class="p">,</span><span class="w"> </span><span class="n">PM_PASSWORD</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tick</span><span class="p">);</span><span class="w">  </span><span class="c1">// number of watchdog tick</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">cancel_reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">PM_RSTC</span><span class="p">,</span><span class="w"> </span><span class="n">PM_PASSWORD</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// full reset</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">PM_WDOG</span><span class="p">,</span><span class="w"> </span><span class="n">PM_PASSWORD</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// number of watchdog tick</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Add a &lt;reboot&gt; command.</p>
+</div>
+</section>
+<section id="basic-exercise-2-uart-bootloader-30">
+<h3>Basic Exercise 2 - UART Bootloader - 30%<a class="headerlink" href="#basic-exercise-2-uart-bootloader-30" title="Link to this heading">#</a></h3>
 <p>In Lab 1, you might experience the process of moving the SD card between your host and rpi3 very often during debugging.
 You can eliminate this by introducing another bootloader to load the kernel under debugging.</p>
 <p>To send binary through UART, you should devise a protocol to read raw data.
-It rarely drops data during transmission, so you can keep the protocol simple.</p>
-<p>You can effectively write data from the host to rpi3 by serial device’s device file in Linux.</p>
+It rarely drops data during transmission, so you can keep the protocol simple. Here is a simple example of what a protocol might look like.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;&lt;III&#39;</span><span class="p">,</span>
+    <span class="mh">0x544F4F42</span><span class="p">,</span>           <span class="c1"># &quot;BOOT&quot; in hex</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">kernel_data</span><span class="p">),</span>     <span class="c1"># size</span>
+    <span class="n">checksum</span>             <span class="c1"># checksum</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can effectively write data from the host to the Raspberry Pi 3 through the serial device’s device file in Linux by creating a Python script to communicate with the bootloader.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/dev/ttyUSB0&#39;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">,</span> <span class="n">buffering</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">as</span> <span class="n">tty</span><span class="p">:</span>
   <span class="n">tty</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">qemu-system-aarch64</span> <span class="pre">-serial</span> <span class="pre">null</span> <span class="pre">-serial</span> <span class="pre">pty</span></code> to create a pseudo TTY device and test your bootloader through it.</p>
+<p>After compiling bootloader.img, we can first use QEMU to test its functionality before running it on actual hardware.
+You can use <code class="docutils literal notranslate"><span class="pre">qemu-system-aarch64</span> <span class="pre">-machine</span> <span class="pre">raspi3b</span> <span class="pre">-kernel</span> <span class="pre">your_bootloader.img</span> <span class="pre">-serial</span> <span class="pre">null</span> <span class="pre">-serial</span> <span class="pre">pty</span></code> to create a pseudo TTY device and test your bootloader through it.</p>
 </div>
 <section id="config-kernel-loading-setting">
 <h4>Config Kernel Loading Setting<a class="headerlink" href="#config-kernel-loading-setting" title="Link to this heading">#</a></h4>
 <p>You may still want to load your actual kernel image at 0x80000, but it then overlaps with your bootloader.
 You can first specify the start address to another by <strong>re-writing the linker script</strong>.
-Then, add <code class="docutils literal notranslate"><span class="pre">config.txt</span></code> file to your SD card’s boot partition to specify the loading address by <code class="docutils literal notranslate"><span class="pre">kernel_address=</span></code>.</p>
+Then, add <code class="docutils literal notranslate"><span class="pre">config.txt</span></code> file to your SD card’s boot partition to specify the loading address by <code class="docutils literal notranslate"><span class="pre">kernel_address=</span></code>. (By default, if no address is specified in config.txt, the image will be loaded at 0x80000.)</p>
 <p>To further make your bootloader less ambiguous with the actual kernel, you can add the loading image name by
 <code class="docutils literal notranslate"><span class="pre">kernel=</span></code> and <code class="docutils literal notranslate"><span class="pre">arm_64bit=1</span></code></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kernel_address=0x60000
@@ -422,8 +478,8 @@ arm_64bit=1
 </div>
 </section>
 </section>
-<section id="basic-exercise-2-initial-ramdisk-30">
-<h3>Basic Exercise 2 - Initial Ramdisk - 30%<a class="headerlink" href="#basic-exercise-2-initial-ramdisk-30" title="Link to this heading">#</a></h3>
+<section id="basic-exercise-3-initial-ramdisk-30">
+<h3>Basic Exercise 3 - Initial Ramdisk - 30%<a class="headerlink" href="#basic-exercise-3-initial-ramdisk-30" title="Link to this heading">#</a></h3>
 <p>After a kernel is initialized, it mounts a root filesystem and runs an init user program.
 The init program can be a script or executable binary to bring up other services or load other drivers later on.</p>
 <p>However, you haven’t implemented any filesystem and storage driver code yet, so you can’t load anything from the SD card using your kernel.
@@ -469,8 +525,8 @@ In the later labs, you will also put script files and executables inside to auto
 </div>
 </section>
 </section>
-<section id="basic-exercise-3-simple-allocator-10">
-<h3>Basic Exercise 3 - Simple Allocator - 10%<a class="headerlink" href="#basic-exercise-3-simple-allocator-10" title="Link to this heading">#</a></h3>
+<section id="basic-exercise-4-simple-allocator-10">
+<h3>Basic Exercise 4 - Simple Allocator - 10%<a class="headerlink" href="#basic-exercise-4-simple-allocator-10" title="Link to this heading">#</a></h3>
 <p>Kernel needs an allocator in the progress of subsystem initialization. However, the dynamic allocator is also a subsystem that need to be initialized. So we need a simple allocator in the early stage of booting.</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">Todo</p>
@@ -606,8 +662,7 @@ For example, it adds the initial ramdisk’s loading address in dtb if you ask t
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -623,16 +678,17 @@ For example, it adds the initial ramdisk’s loading address in dtb if you ask t
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercises">Basic Exercises</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-1-uart-bootloader-30">Basic Exercise 1 - UART Bootloader - 30%</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-1-reboot-10">Basic Exercise 1 - Reboot - 10%</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-2-uart-bootloader-30">Basic Exercise 2 - UART Bootloader - 30%</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#config-kernel-loading-setting">Config Kernel Loading Setting</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-2-initial-ramdisk-30">Basic Exercise 2 - Initial Ramdisk - 30%</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-3-initial-ramdisk-30">Basic Exercise 3 - Initial Ramdisk - 30%</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#new-ascii-format-cpio-archive">New ASCII Format Cpio Archive</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-cpio-archive">Loading Cpio Archive</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-3-simple-allocator-10">Basic Exercise 3 - Simple Allocator - 10%</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-exercise-4-simple-allocator-10">Basic Exercise 4 - Simple Allocator - 10%</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-exercises">Advanced Exercises</a><ul class="nav section-nav flex-column">
@@ -693,8 +749,8 @@ By  NYCU cas-lab
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

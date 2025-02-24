@@ -49,16 +49,62 @@ In Lab 2, you'll implement a bootloader that loads the actual kernel through UAR
 Basic Exercises
 ###############
 
-Basic Exercise 1 - UART Bootloader - 30%
+Basic Exercise 1 - Reboot - 10%
+==================================
+
+Rpi3 doesn't originally provide an on board reset button.
+
+You can follow this example code to reset your rpi3.
+
+.. important::
+
+  This snippet of code only works on real rpi3, not on QEMU.
+
+.. code-block:: c
+
+  #define PM_PASSWORD 0x5a000000
+  #define PM_RSTC 0x3F10001c
+  #define PM_WDOG 0x3F100024
+
+  void set(long addr, unsigned int value) {
+      volatile unsigned int* point = (unsigned int*)addr;
+      *point = value;
+  }
+  
+  void reset(int tick) {                 // reboot after watchdog timer expire
+      set(PM_RSTC, PM_PASSWORD | 0x20);  // full reset
+      set(PM_WDOG, PM_PASSWORD | tick);  // number of watchdog tick
+  }
+  
+  void cancel_reset() {
+      set(PM_RSTC, PM_PASSWORD | 0);  // full reset
+      set(PM_WDOG, PM_PASSWORD | 0);  // number of watchdog tick
+  }
+  
+
+.. admonition:: Todo
+
+   Add a <reboot> command.
+
+Basic Exercise 2 - UART Bootloader - 30%
 ========================================
 
 In Lab 1, you might experience the process of moving the SD card between your host and rpi3 very often during debugging.
 You can eliminate this by introducing another bootloader to load the kernel under debugging.
 
-To send binary through UART, you should devise a protocol to read raw data.
-It rarely drops data during transmission, so you can keep the protocol simple.
+To send binary through UART, you should devise a protocol to read raw data. 
+It rarely drops data during transmission, so you can keep the protocol simple. Here is a simple example of what a protocol might look like.
 
-You can effectively write data from the host to rpi3 by serial device's device file in Linux.
+.. code-block:: python
+
+  header = struct.pack('<III', 
+      0x544F4F42,           # "BOOT" in hex
+      len(kernel_data),     # size
+      checksum             # checksum
+  )
+
+
+You can effectively write data from the host to the Raspberry Pi 3 through the serial device's device file in Linux by creating a Python script to communicate with the bootloader.
 
 .. code-block:: python
 
@@ -67,8 +113,9 @@ You can effectively write data from the host to rpi3 by serial device's device f
 
 
 .. hint::
+  After compiling bootloader.img, we can first use QEMU to test its functionality before running it on actual hardware.
+  You can use ``qemu-system-aarch64 -machine raspi3b -kernel your_bootloader.img -serial null -serial pty`` to create a pseudo TTY device and test your bootloader through it. 
 
-  You can use ``qemu-system-aarch64 -serial null -serial pty`` to create a pseudo TTY device and test your bootloader through it.
 
 
 Config Kernel Loading Setting
@@ -76,7 +123,7 @@ Config Kernel Loading Setting
 
 You may still want to load your actual kernel image at 0x80000, but it then overlaps with your bootloader.
 You can first specify the start address to another by **re-writing the linker script**.
-Then, add ``config.txt`` file to your SD card's boot partition to specify the loading address by ``kernel_address=``.
+Then, add ``config.txt`` file to your SD card's boot partition to specify the loading address by ``kernel_address=``. (By default, if no address is specified in config.txt, the image will be loaded at 0x80000.)
 
 To further make your bootloader less ambiguous with the actual kernel, you can add the loading image name by
 ``kernel=`` and ``arm_64bit=1``
@@ -98,7 +145,7 @@ To further make your bootloader less ambiguous with the actual kernel, you can a
   UART is a low-speed interface. It's okay to send your kernel image because it's quite small. Don't use it to send large binary files.
 
 
-Basic Exercise 2 - Initial Ramdisk - 30%
+Basic Exercise 3 - Initial Ramdisk - 30%
 ========================================
 
 After a kernel is initialized, it mounts a root filesystem and runs an init user program.
@@ -158,7 +205,7 @@ Then specify the name and loading address in ``config.txt``.
   In Lab 2, you only need to **put some plain text files inside your archive** to test the functionality.
   In the later labs, you will also put script files and executables inside to automate the testing. 
 
-Basic Exercise 3 - Simple Allocator - 10%
+Basic Exercise 4 - Simple Allocator - 10%
 =========================================
 Kernel needs an allocator in the progress of subsystem initialization. However, the dynamic allocator is also a subsystem that need to be initialized. So we need a simple allocator in the early stage of booting.
 
